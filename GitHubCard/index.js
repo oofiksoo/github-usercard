@@ -63,6 +63,7 @@ function devcard(prfl) {
         devName = document.createElement('h3'), //Developer "Given" Name
         devAlias = document.createElement('p'), //Developer Username
         devLoc = document.createElement('p'), //Developer "Physical" Location
+        devPrfl = document.createElement('p'), //developer profile box
         devUrl = document.createElement('a'), //Developer "internet" Location/URL
         devFlwr = document.createElement('p'), //Developer's Followers
         devFlwg = document.createElement('p'), //Developer is Following
@@ -74,7 +75,8 @@ function devcard(prfl) {
     devInfo.appendChild(devName); //Child of devInfo Container/div - Given Name
     devInfo.appendChild(devAlias); //child of devInfo container/div - Username
     devInfo.appendChild(devLoc); //child of devInfo  container/div - phisical location
-    devInfo.appendChild(devUrl); //child of devInfo container/div - URL Location
+    devInfo.appendChild(devPrfl); //child of devInfo
+    devPrfl.appendChild(devUrl); //child of devPrfl container/div - URL Location
     devInfo.appendChild(devFlwr); //child of devInfo container/div - Followers
     devInfo.appendChild(devFlwg); //child of devInfo container/div - Following
     devInfo.appendChild(devBio); //child of devInfo container/div - Bio
