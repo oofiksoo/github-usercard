@@ -7,6 +7,9 @@
 axios.get("https://api.github.com/users/oofiksoo")
     .then(rtrn => {
         console.log(rtrn);
+    })
+    .catch(errmsg => {
+        console.log(errmsg)
     });
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
@@ -35,6 +38,7 @@ const followersArray = [];
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
 
+          
 <div class="card">
   <img src={image url of user} />
   <div class="card-info">
@@ -51,6 +55,38 @@ const followersArray = [];
 </div>
 
 */
+function devcard(prfl) {
+    //create needed elements
+    const newDev = document.createElement('div'), //Developers "Card" div/container
+        devImg = document.createElement('img'), //Developers "Image"
+        devInfo = document.createElement('div'), //Developer detail div/container
+        devName = document.createElement('h3'), //Developer "Given" Name
+        devAlias = document.createElement('p'), //Developer Username
+        devLoc = document.createElement('p'), //Developer "Physical" Location
+        devUrl = document.createElement('a'), //Developer "internet" Location/URL
+        devFlwr = document.createElement('p'), //Developer's Followers
+        devFlwg = document.createElement('p'), //Developer is Following
+        devBio = document.createElement('p'); //Developer Bio
+    //append children elements
+    newDev.appendChild(devImg); //First "child" image
+    newDev.appendChild(devInfo); //second "Child" - profile container/div
+    //append sub-childern
+    devInfo.appendChild(devName); //Child of devInfo Container/div - Given Name
+    devInfo.appendChild(devAlias); //child of devInfo container/div - Username
+    devInfo.appendChild(devLoc); //child of devInfo  container/div - phisical location
+    devInfo.appendChild(devUrl); //child of devInfo container/div - URL Location
+    devInfo.appendChild(devFlwr); //child of devInfo container/div - Followers
+    devInfo.appendChild(devFlwg); //child of devInfo container/div - Following
+    devInfo.appendChild(devBio); //child of devInfo container/div - Bio
+    //set class names
+    newDev.classList.add('card');
+    devInfo.classList.add('card-info');
+    devName.classList.add('name');
+    devAlias.classList.add('username');
+    //set content
+
+
+}
 
 /* List of LS Instructors Github username's: 
   tetondan
