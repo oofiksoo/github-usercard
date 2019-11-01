@@ -35,16 +35,33 @@ axios
           user, and adding that card to the DOM.
 */
 
-const followersArray = [
+//stretch - request followers & build cards
+axios
+    .get('https://api.github.com/users/oofiksoo')
+    .then(response => {
+        axios
+            .get(response.data.followers_url)
+            .then(response2 => {
+                response2.data.forEach(follower => {
+                    axios
+                        .get(follower.url)
+                        .then(response3 => {
+                            crdloc.appendChild(devcard(response3.data));
+                        })
+                })
+            })
+    })
+
+/* const followersArray = [
     'https://api.github.com/users/lyndsiWilliams',
     'https://api.github.com/users/squashgray',
     'https://api.github.com/users/bseverino',
     'https://api.github.com/users/phil-mac',
     'https://api.github.com/users/leachcoding'
 ];
+*/
 
-
-
+/*
 followersArray.forEach(item => {
     axios
         .get(item)
@@ -58,6 +75,7 @@ followersArray.forEach(item => {
         })
 
 })
+*/
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -116,7 +134,8 @@ function devcard(prfl) {
     devName.textContent = prfl.name;
     devAlias.textContent = `Username: ${prfl.login}`;
     devLoc.textContent = `Location: ${prfl.location}`;
-    devUrl.textContent = `Github URL: ${prfl.url}`;
+    devUrl.href = prfl.html_url;
+    devUrl.textContent = `Github Profile`
     devFlwr.textContent = `Followers: ${prfl.followers}`;
     devFlwg.textContent = `Following: ${prfl.following}`;
     devBio.textContent = `Bio: ${prfl.bio}`;
