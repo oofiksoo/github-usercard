@@ -9,6 +9,7 @@ axios
     .then(response => {
         const devcrd = response.data;
         crdloc.appendChild(devcard(devcrd));
+        new GitHubCalendar(".calendar", "oofiksoo");
     })
     .catch(errmsg => {
         console.log(errmsg)
@@ -34,40 +35,39 @@ axios
           Using that array, iterate over it, requesting data for each user, creating a new card for each
           user, and adding that card to the DOM.
 */
-
+// https://api.github.com/users/<Your github name>/followers -DOES NOT RETURN ALL DATA
 //stretch - request followers & build cards
-axios
-    .get('https://api.github.com/users/oofiksoo')
+axios.get('https://api.github.com/users/oofiksoo')
     .then(response => {
-        axios
-            .get(response.data.followers_url)
-            .then(response2 => {
-                response2.data.forEach(follower => {
-                    axios
-                        .get(follower.url)
-                        .then(response3 => {
-                            crdloc.appendChild(devcard(response3.data));
+        axios.get(response.data.followers_url) //get followers url to pull full data
+            .then(flwresponse => {
+                flwresponse.data.forEach(follower => {
+                    axios.get(follower.url) //build card based on response
+                        .then(carddata => {
+                            crdloc.appendChild(devcard(carddata.data)); //append to cardloc div
                         })
                 })
             })
     })
 
-/* const followersArray = [
+/*
+//follower array from URL - string
+const followersArray = [
     'https://api.github.com/users/lyndsiWilliams',
     'https://api.github.com/users/squashgray',
     'https://api.github.com/users/bseverino',
     'https://api.github.com/users/phil-mac',
     'https://api.github.com/users/leachcoding'
 ];
-*/
 
-/*
+//loop over url's and build cards
+
 followersArray.forEach(item => {
     axios
         .get(item)
         .then(response => {
-            const newProfile = devcard(response.data)
-            crdloc.appendChild(newProfile)
+            const fldev = devcard(response.data)
+            crdloc.appendChild(fldev)
 
         })
         .catch(errmsg => {
@@ -97,7 +97,7 @@ followersArray.forEach(item => {
 </div>
 
 */
-const crdloc = document.querySelector(".cards");
+const crdloc = document.querySelector(".cards"); //parent div
 
 function devcard(prfl) {
     //create needed elements
