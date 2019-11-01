@@ -4,9 +4,11 @@
 */
 
 
-axios.get("https://api.github.com/users/oofiksoo")
-    .then(rtrn => {
-        console.log(rtrn);
+axios
+    .get("https://api.github.com/users/oofiksoo")
+    .then(response => {
+        const devcrd = response.data;
+        crdloc.appendChild(devcard(devcrd));
     })
     .catch(errmsg => {
         console.log(errmsg)
@@ -33,7 +35,29 @@ axios.get("https://api.github.com/users/oofiksoo")
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+    'https://api.github.com/users/lyndsiWilliams',
+    'https://api.github.com/users/squashgray',
+    'https://api.github.com/users/bseverino',
+    'https://api.github.com/users/phil-mac',
+    'https://api.github.com/users/leachcoding'
+];
+
+
+
+followersArray.forEach(item => {
+    axios
+        .get(item)
+        .then(response => {
+            const newProfile = devcard(response.data)
+            crdloc.appendChild(newProfile)
+
+        })
+        .catch(errmsg => {
+            console.log(errmsg);
+        })
+
+})
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -55,6 +79,8 @@ const followersArray = [];
 </div>
 
 */
+const crdloc = document.querySelector(".cards");
+
 function devcard(prfl) {
     //create needed elements
     const newDev = document.createElement('div'), //Developers "Card" div/container
@@ -86,7 +112,16 @@ function devcard(prfl) {
     devName.classList.add('name');
     devAlias.classList.add('username');
     //set content
-
+    devImg.src = prfl.avatar_url;
+    devName.textContent = prfl.name;
+    devAlias.textContent = prfl.login;
+    devLoc.textContent = prfl.location;
+    devUrl.textContent = prfl.url;
+    devFlwr.textContent = prfl.followers;
+    devFlwg.textContent = prfl.following;
+    devBio.textContent = prfl.bio;
+    //return built card
+    return newDev
 
 }
 
