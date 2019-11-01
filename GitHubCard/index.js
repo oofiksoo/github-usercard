@@ -9,7 +9,6 @@ axios
     .then(response => {
         const devcrd = response.data;
         crdloc.appendChild(devcard(devcrd));
-        new GitHubCalendar(".calendar", "oofiksoo");
     })
     .catch(errmsg => {
         console.log(errmsg)
