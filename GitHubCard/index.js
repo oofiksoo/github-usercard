@@ -33,8 +33,11 @@ axios
           
           Using that array, iterate over it, requesting data for each user, creating a new card for each
           user, and adding that card to the DOM.
+
+// https://api.github.com/users/<Your github name>/followers - DOES NOT RETURN ALL DATA
+
 */
-// https://api.github.com/users/<Your github name>/followers -DOES NOT RETURN ALL DATA
+
 //stretch - request followers & build cards
 axios.get('https://api.github.com/users/oofiksoo')
     .then(response => {
