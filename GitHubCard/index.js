@@ -95,8 +95,11 @@ followersArray.forEach(item => {
   </div>
 </div>
 
+
 */
+
 const crdloc = document.querySelector(".cards"); //parent div
+
 
 function devcard(prfl) {
     //create needed elements
