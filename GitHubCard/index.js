@@ -114,12 +114,12 @@ function devcard(prfl) {
     //set content
     devImg.src = prfl.avatar_url;
     devName.textContent = prfl.name;
-    devAlias.textContent = prfl.login;
-    devLoc.textContent = prfl.location;
-    devUrl.textContent = prfl.url;
-    devFlwr.textContent = prfl.followers;
-    devFlwg.textContent = prfl.following;
-    devBio.textContent = prfl.bio;
+    devAlias.textContent = `Username: ${prfl.login}`;
+    devLoc.textContent = `Location: ${prfl.location}`;
+    devUrl.textContent = `Github URL: ${prfl.url}`;
+    devFlwr.textContent = `Followers: ${prfl.followers}`;
+    devFlwg.textContent = `Following: ${prfl.following}`;
+    devBio.textContent = `Bio: ${prfl.bio}`;
     //return built card
     return newDev
 
